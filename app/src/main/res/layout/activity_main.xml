@@ -72,13 +72,6 @@
         android:textAllCaps="true"
         android:layout_below="@id/ly_password"/>
 
-    <Button
-        android:id="@+id/btn_map2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/entrar"
-        android:textAllCaps="true"
-        android:layout_alignParentBottom="true"
-        />
+
 
 </RelativeLayout>
