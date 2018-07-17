@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:layout_marginTop="40dp">
+    android:layout_marginTop="40dp"
+    tools:context=".MainActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_logo"
@@ -15,63 +15,75 @@
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"/>
 
-    <LinearLayout
-        android:id="@+id/ly_username"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/ly_username"
         android:layout_below="@id/img_logo"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:layout_marginTop="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/user_name"
-            android:textAllCaps="true"/>
-
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/edt_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:hint="@string/user_name"/>
+            android:hint="@string/user_name" />
 
-    </LinearLayout>
+    </android.support.design.widget.TextInputLayout>
 
-    <LinearLayout
-        android:id="@+id/ly_password"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:id="@+id/ly_password"
         android:layout_below="@id/ly_username"
         android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:text="@string/password"/>
-
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
             android:hint="@string/password"/>
 
-    </LinearLayout>
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btn_map"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/round_btn"
+        android:layout_below="@id/ly_password"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/entrar"
         android:textAllCaps="true"
-        android:layout_below="@id/ly_password"/>
+        android:textSize="16sp"
+        android:textColor="@color/blanco"/>
 
+    <TextView
+        android:id="@+id/txt_no_tienes_cuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:textAllCaps="true"
+        android:text="@string/no_tienes_cuenta"
+        android:textSize="16sp"/>
 
+    <TextView
+        android:id="@+id/txt_haz_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:text="@string/haz_click_aqui"
+        android:textAllCaps="true"
+        android:textSize="18sp" />
 
 </RelativeLayout>

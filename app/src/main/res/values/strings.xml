@@ -2,6 +2,8 @@
     <string name="app_name">GoogleMaps</string>
     <string name="api_key">AIzaSyD3rSFjCrYs-jvk-PoOUABXzEAhv47J2bU</string>
     <string name="entrar">entrar</string>
-    <string name="user_name">username</string>
-    <string name="password">password</string>
+    <string name="user_name">USERNAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="no_tienes_cuenta">¿aun no tienes cuenta?</string>
+    <string name="haz_click_aqui">haz click aqui</string>
 </resources>
