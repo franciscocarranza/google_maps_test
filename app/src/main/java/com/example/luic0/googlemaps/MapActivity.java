@@ -52,9 +52,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             mMap.addMarker(
             new MarkerOptions()
-                    .position(new LatLng(24.7988943, -4))
-                    //.position(new LatLng(24.798612, -107.406439))
+                    .position(new LatLng(24.7988943, -107.405242))
                     .title("Esoft"));
+
+            mMap.addMarker(
+                    new MarkerOptions()
+                            .position(new LatLng(24.798612, -107.406439))
+                            .title("Panama"));
 
     }
 
