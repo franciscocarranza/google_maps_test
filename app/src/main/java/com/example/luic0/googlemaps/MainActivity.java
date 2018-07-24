@@ -5,21 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
-
-    @BindView(R.id.btn_map)
-    Button btnMap;
+public class MainActivity extends AppCompatActivity{
 
     private static final String TAG = "MainActivity";
 
@@ -33,19 +28,19 @@ public class MainActivity extends AppCompatActivity {
         hideSoftKeyboard();
 
         if (isServicesOK()){
-            init();
+            goToMap();
         }
     }
 
-    private void init(){
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
+        @OnClick(R.id.btn_map)
+        public void goToMap () {
+            startActivity(new Intent(this, MapActivity.class));
+        }
+
+        @OnClick(R.id.txt_haz_click)
+        public void goTORegistro () {
+            startActivity(new Intent(this, RegistroActivity.class));
+        }
 
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: cheking google services vesion");

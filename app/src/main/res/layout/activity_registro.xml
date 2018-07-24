@@ -16,84 +16,81 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="60dp"/>
 
-    <android.support.design.widget.TextInputLayout
+    <RelativeLayout
         android:id="@+id/ly_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/img_logo"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/round_corners">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/edt_name"
+
+        <ImageView
+            android:id="@+id/img_skull"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_skull"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="22dp" />
+
+        <EditText
+            android:id="@+id/edt_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/nombre"
+            android:layout_toEndOf="@id/img_skull"
+            android:textColorHint="@color/blanco"
             android:textColor="@color/blanco"
-            android:padding="10dp"
-            android:background="@drawable/round_corners"
-            android:drawableStart="@drawable/ic_skull"
-            android:drawablePadding="25dp"
-            android:drawableTint="@color/blanco"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/user_name"
+            android:padding="3dp" />
 
-    </android.support.design.widget.TextInputLayout>
+    </RelativeLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/ly_contraseña"
+    <EditText
+        android:id="@+id/edt_contraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_below="@id/ly_name"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:hint="@string/password"
+        android:textColorHint="@color/blanco"
+        android:textColor="@color/blanco"
+        android:padding="10dp"
+        android:background="@drawable/round_corners"
+        android:drawableStart="@drawable/ic_key"
+        android:drawablePadding="25dp"
+        android:drawableTint="@color/blanco"/>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/edt_contraseña"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/password"
-            android:textColor="@color/blanco"
-            android:padding="10dp"
-            android:background="@drawable/round_corners"
-            android:drawableStart="@drawable/ic_key"
-            android:drawablePadding="25dp"
-            android:drawableTint="@color/blanco"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
+    <EditText
+        android:id="@+id/edt_correo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ly_correo"
-        android:layout_below="@id/ly_contraseña"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/edt_contraseña"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/edt_correo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/email"
-            android:textColor="@color/blanco"
-            android:padding="10dp"
-            android:background="@drawable/round_corners"
-            android:drawableStart="@drawable/ic_mail"
-            android:drawablePadding="25dp"
-            android:drawableTint="@color/blanco"/>
-
-    </android.support.design.widget.TextInputLayout>
+        android:layout_marginTop="10dp"
+        android:hint="@string/email"
+        android:textColorHint="@color/blanco"
+        android:textColor="@color/blanco"
+        android:padding="10dp"
+        android:background="@drawable/round_corners"
+        android:drawableStart="@drawable/ic_mail"
+        android:drawablePadding="25dp"
+        android:drawableTint="@color/blanco"/>
 
     <LinearLayout
         android:id="@+id/ly_check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ly_correo"
-        android:layout_marginLeft="20dp">
+        android:layout_below="@id/edt_correo"
+        android:layout_marginStart="20dp">
 
         <CheckBox
             android:id="@+id/check_accepto"
@@ -104,7 +101,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Acepto los terminos y condiciones"
+            android:text="@string/acepto_terminos"
             android:textColor="@color/blanco"
             android:layout_marginStart="10dp"/>
 

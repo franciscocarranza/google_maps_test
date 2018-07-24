@@ -11,60 +11,92 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img_logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="40dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_logo"
-        android:layout_alignParentTop="true"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="40dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_logo"
+            android:layout_alignParentTop="true"/>
 
-        <EditText
-            android:id="@+id/edt_username"
+        <RelativeLayout
+            android:id="@+id/ly_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/img_logo"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColorHint="@color/blanco"
-            android:textColor="@color/blanco"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginBottom="10dp"
-            android:hint="@string/user_name"
-            android:padding="5dp"
-            android:background="@drawable/round_corners"
-            android:drawableStart="@drawable/ic_skull"
-            android:drawablePadding="25dp"
-            android:inputType="" />
+            android:background="@drawable/round_corners">
 
-        <EditText
-            android:id="@+id/edt_password"
+
+            <ImageView
+                android:id="@+id/img_skull"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_skull"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="22dp" />
+
+            <EditText
+                android:id="@+id/edt_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/img_skull"
+                android:textColorHint="@color/blanco"
+                android:textColor="@color/blanco"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/user_name"
+                android:padding="3dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ly_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edt_username"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColorHint="@color/blanco"
+            android:layout_below="@id/ly_username"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="25dp"
-            android:hint="@string/password"
-            android:textColor="@color/blanco"
-            android:padding="10dp"
-            android:background="@drawable/round_corners"
-            android:drawableStart="@drawable/ic_key"
-            android:drawablePadding="25dp" />
+            android:background="@drawable/round_corners">
+
+
+            <ImageView
+                android:id="@+id/img_key"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_key"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="22dp"
+                android:padding="2dp"/>
+
+            <EditText
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/img_key"
+                android:textColorHint="@color/blanco"
+                android:textColor="@color/blanco"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/password"
+                android:padding="3dp" />
+
+        </RelativeLayout>
 
         <Button
             android:id="@+id/btn_map"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_btn"
-            android:layout_below="@id/edt_password"
+            android:layout_below="@id/ly_password"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:text="@string/entrar"
             android:textAllCaps="true"
             android:textSize="16sp"
