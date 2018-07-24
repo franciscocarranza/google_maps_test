@@ -2,11 +2,11 @@ package com.example.luic0.googlemaps;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.nfc.Tag;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        hideSoftKeyboard();
 
         if (isServicesOK()){
             init();
@@ -65,5 +66,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "you cant make make map requests", Toast.LENGTH_SHORT).show();
         }
         return false;
+    }
+    private void hideSoftKeyboard(){
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 }
