@@ -29,7 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MapActivity" />
-        <activity android:name=".RegistroActivity"></activity>
+        <activity android:name=".RegistroActivity" />
+        <activity android:name=".SlidingUpPanelActivity"></activity>
     </application>
 
 </manifest>

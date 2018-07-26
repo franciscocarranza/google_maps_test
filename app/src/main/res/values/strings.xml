@@ -9,5 +9,11 @@
     <string name="nombre">NOMBRE</string>
     <string name="email">EMAIL</string>
     <string name="crear_cuenta">crear cuenta</string>
+    <string name="hello">hello</string>
+    <string name="follow">follow</string>
+    <string name="action_show">action show</string>
+    <string name="action_hide">action hide</string>
+    <string name="action_anchor_disable">action anchor disable</string>
+    <string name="action_anchor_enable">action anchor enable</string>
     <string name="acepto_terminos">Acepto los terminos y condiciones</string>
 </resources>

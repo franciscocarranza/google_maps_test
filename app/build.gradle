@@ -36,5 +36,8 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
     implementation 'com.google.android.gms:play-services-places:15.0.1'
+    //slide up panel dependency
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
+
 
 }
