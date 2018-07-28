@@ -1,20 +1,13 @@
 package com.example.luic0.googlemaps;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -32,17 +25,8 @@ public class SlidingUpPanelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sliding_up_panel);
         ButterKnife.bind(this);
 
-        setSupportActionBar((Toolbar) findViewById(R.id.main_toolbar));
 
-        ListView lv = (ListView) findViewById(R.id.list);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(SlidingUpPanelActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        mLayout = findViewById(R.id.sliding_layout);
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
@@ -61,21 +45,13 @@ public class SlidingUpPanelActivity extends AppCompatActivity {
             }
         });
 
-        TextView t = (TextView) findViewById(R.id.name);
-        t.setText(Html.fromHtml(getString(R.string.hello)));
-        ImageView img = (ImageView) findViewById(R.id.img_mostrar_ocultar);
-        img.setOnClickListener((View.OnClickListener) Html.fromHtml(getString(R.string.hello)));
-        Button f = (Button) findViewById(R.id.follow);
-        f.setText(Html.fromHtml(getString(R.string.follow)));
-        f.setMovementMethod(LinkMovementMethod.getInstance());
-        f.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("http://www.twitter.com/umanoapp"));
-                startActivity(i);
-            }
-        });
+        TextView t = findViewById(R.id.txt_mostrar);
+        t.setText(getString(R.string.mostrar));
+        ImageView img = findViewById(R.id.img_mostrar_ocultar);
+        if (img.isClickable()){
+
+            img.setOnClickListener((View.OnClickListener) Html.fromHtml(getString(R.string.ocultar)));
+        }
     }
 
     private void setSupportActionBar(Toolbar viewById) {

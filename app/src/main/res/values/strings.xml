@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">GoogleMaps</string>
     <string name="api_key">AIzaSyD3rSFjCrYs-jvk-PoOUABXzEAhv47J2bU</string>
+    <string name="jub">julian is a cool boi</string>
     <string name="entrar">entrar</string>
     <string name="user_name">USUARIO</string>
     <string name="password">CONTRASEÑA</string>
@@ -9,12 +10,15 @@
     <string name="nombre">NOMBRE</string>
     <string name="email">EMAIL</string>
     <string name="crear_cuenta">crear cuenta</string>
-    <string name="hello">hello</string>
-    <string name="follow">follow</string>
+    <string name="mostrar">MOSTRAR</string>
+    <string name="ocultar">OCULTAR</string>
     <string name="action_settings">Settings</string>
-    <string name="action_hide">Hide Panel</string>
-    <string name="action_show">Show Panel</string>
-    <string name="action_anchor_enable">Enable Anchor Point</string>
-    <string name="action_anchor_disable">Disable Anchor Point</string>
     <string name="acepto_terminos">Acepto los terminos y condiciones</string>
+    <string name="cerrar_sesion">CERRAR SESION</string>
+    <string name="contacto">CONTACTO</string>
+    <string name="r_e_a_y_a">R.E.A.Y.A</string>
+    <string name="r_d_y">R.D.Y</string>
+    <string name="r_n_m">R.N.M</string>
+    <string name="r_n_i">R.N.I</string>
+
 </resources>
