@@ -5,19 +5,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SlidingUpPanelActivity extends AppCompatActivity {
     private static final String TAG = "SlidingUpPanelActivity";
 
-    private SlidingUpPanelLayout mLayout;
+    @BindView(R.id.sliding_layout)
+    SlidingUpPanelLayout mLayout;
+
+    @BindView(R.id.img_mostrar_ocultar)
+    ImageView panelImg;
+
+    @BindView(R.id.txt_mostrar)
+    TextView txtPanelLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +33,6 @@ public class SlidingUpPanelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sliding_up_panel);
         ButterKnife.bind(this);
 
-
-        mLayout = findViewById(R.id.sliding_layout);
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
@@ -36,6 +42,15 @@ public class SlidingUpPanelActivity extends AppCompatActivity {
             @Override
             public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
                 Log.i(TAG, "onPanelStateChanged " + newState);
+                if (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                    panelImg.setImageDrawable(getDrawable(R.drawable.ic_dropdown_arrow));
+                    txtPanelLabel.setText(R.string.mostrar);
+                } else if( mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED){
+                    mLayout.setAnchorPoint(0.7f);
+                    mLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+                    panelImg.setImageDrawable(getDrawable(R.drawable.ic_dropdown_arrow));
+                    txtPanelLabel.setText(R.string.ocultar);
+                }
             }
         });
         mLayout.setFadeOnClickListener(new View.OnClickListener() {
@@ -54,12 +69,31 @@ public class SlidingUpPanelActivity extends AppCompatActivity {
         }
     }
 
-    private void setSupportActionBar(Toolbar viewById) {
-    }
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.img_mostrar_ocultar: {
+                if (mLayout != null) {
+                    if (mLayout.getPanelState() != SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                        item.setIcon(R.drawable.ic_dropdown_arrow);
+                        item.setTitle(R.string.mostrar);
+                    } else {
+                        mLayout.setAnchorPoint(0.5f);
+                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+                        item.setIcon(R.drawable.ic_dropdown_arrow);
+                        item.setTitle(R.string.ocultar);
+                    }
+                }
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -71,5 +105,4 @@ public class SlidingUpPanelActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-    }
+}
