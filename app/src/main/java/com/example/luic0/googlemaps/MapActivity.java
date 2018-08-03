@@ -1,6 +1,7 @@
 package com.example.luic0.googlemaps;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -10,8 +11,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.WindowManager;
+import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -30,6 +34,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener,
@@ -40,9 +49,36 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         GoogleMap.OnInfoWindowLongClickListener,
         GoogleMap.OnInfoWindowCloseListener{
 
+    private static final String TAG = "MapActivity";
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
+    private static final float DEFAULT_ZOOM = 15f;
+    private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
+            new LatLng(-40, -168), new LatLng(71, 136));
+    //vars
+    private boolean mLocationsPermissionsGranted = false;
+    private GoogleMap mMap;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+    private GoogleApiClient mGoogleApiClient;
+
+    @BindView(R.id.sliding_layout)
+    SlidingUpPanelLayout mLayout;
+
+    @BindView(R.id.img_mostrar_ocultar)
+    ImageView panelImg;
+
+    @BindView(R.id.txt_mostrar)
+    TextView txtPanelLabel;
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @OnClick(R.id.btn_cerrar_sesion)
+    public void goTOLogin () {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override
@@ -83,8 +119,54 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-
+        ButterKnife.bind(this);
         getLocationPermission();
+
+        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                Log.i(TAG, "onPanelStateChanged " + newState);
+                if (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                    panelImg.setImageDrawable(getDrawable(R.drawable.ic_arrow_up));
+                    txtPanelLabel.setText(R.string.mostrar);
+                } else if( mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED){
+                    mLayout.setAnchorPoint(0.7f);
+                    mLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+                    panelImg.setImageDrawable(getDrawable(R.drawable.ic_arrow_down));
+                    txtPanelLabel.setText(R.string.ocultar);
+
+                } else if( mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED){
+                    panelImg.setImageDrawable(getDrawable(R.drawable.ic_arrow_down));
+                    txtPanelLabel.setText(R.string.ocultar);
+                }
+            }
+        });
+        mLayout.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mLayout != null &&
+                (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED || mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
+            mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -96,10 +178,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         switch (requestCode){
             case LOCATION_PERMISSION_REQUEST_CODE:{
                 if (grantResults.length > 0){
-                    for(int i = 0; i < grantResults.length; i++){
-                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+                    for (int grantResult : grantResults) {
+                        if (grantResult != PackageManager.PERMISSION_GRANTED) {
                             mLocationsPermissionsGranted = false;
-                            Log.d(TAG,"onRequestPermissionsResult: permission failed");
+                            Log.d(TAG, "onRequestPermissionsResult: permission failed");
                             return;
                         }
                     }
@@ -162,20 +244,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-    private static final String TAG = "MapActivity";
-    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
-    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
-    private static final float DEFAULT_ZOOM = 15f;
-    private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
-            new LatLng(-40, -168), new LatLng(71, 136));
-    //vars
-    private boolean mLocationsPermissionsGranted = false;
-    private GoogleMap mMap;
-    private FusedLocationProviderClient mFusedLocationProviderClient;
-    private GoogleApiClient mGoogleApiClient;
-
-
     private void init(){
         Log.d(TAG, "init: initializing");
 
@@ -221,8 +289,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
-        hideSoftKeyboard();
-
     }
 
     private void initMap(){
@@ -251,9 +317,4 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 permissions, LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
-        private void hideSoftKeyboard(){
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    }
-
-
 }

@@ -2,15 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/ly_reaya"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle"
-        android:padding="10dp">
+        android:padding="12dp">
 
         <ImageView
             android:layout_width="20dp"
@@ -21,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="14dp"
             android:text="@string/r_e_a_y_a" />
 
         <Switch
@@ -38,9 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ly_reaya"
-        android:layout_marginTop="10dp"
         android:background="@drawable/rectangle"
-        android:padding="10dp">
+        android:padding="12dp">
 
         <ImageView
             android:layout_width="20dp"
@@ -51,7 +49,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="14dp"
             android:text="@string/r_d_y" />
 
         <Switch
@@ -68,15 +66,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ly_rdy"
-        android:layout_marginTop="10dp"
         android:background="@drawable/rectangle"
-        android:padding="10dp">
+        android:padding="12dp">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/ic_compass"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_hour_glass"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -98,15 +95,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ly_rnm"
-        android:layout_marginTop="10dp"
         android:background="@drawable/rectangle"
-        android:padding="10dp">
+        android:padding="12dp">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/ic_compass"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_candle"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -128,19 +124,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ly_rni"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="8dp"
             android:src="@drawable/ic_black_skull"/>
 
         <TextView
             android:id="@+id/txt_contacto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="13dp"
             android:text="@string/contacto"/>
 
     </LinearLayout>
@@ -150,6 +146,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ly_contacto"
+        android:padding="16dp"
         android:background="@color/black"
         android:textColor="@color/blanco"
         android:text="@string/cerrar_sesion"/>

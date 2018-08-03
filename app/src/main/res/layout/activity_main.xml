@@ -9,7 +9,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusableInTouchMode="true">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_logo"
@@ -38,7 +40,7 @@
                 android:layout_height="30dp"
                 android:src="@drawable/ic_skull"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="22dp" />
+                android:layout_marginEnd="10dp" />
 
             <EditText
                 android:id="@+id/edt_username"
@@ -49,6 +51,7 @@
                 android:textColor="@color/blanco"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:background="@android:color/transparent"
                 android:hint="@string/user_name"
                 android:padding="3dp" />
 
@@ -64,14 +67,14 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/round_corners">
 
-
             <ImageView
                 android:id="@+id/img_key"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/ic_key"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="22dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="5dp"
                 android:padding="2dp"/>
 
             <EditText
@@ -83,6 +86,7 @@
                 android:textColor="@color/blanco"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:background="@android:color/transparent"
                 android:hint="@string/password"
                 android:padding="3dp" />
 
@@ -94,13 +98,13 @@
             android:layout_height="wrap_content"
             android:background="@drawable/round_btn"
             android:layout_below="@id/ly_password"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="85dp"
+            android:layout_marginStart="85dp"
             android:layout_marginTop="30dp"
             android:text="@string/entrar"
             android:textAllCaps="true"
             android:textSize="16sp"
-            android:textColor="@color/grey"/>
+            android:textColor="@color/dark_grey"/>
 
         <TextView
             android:id="@+id/txt_no_tienes_cuenta"
@@ -124,6 +128,7 @@
             android:layout_below="@id/txt_no_tienes_cuenta"
             android:clickable="true"
             android:focusable="true"
+            android:background="@drawable/line"
             android:text="@string/haz_click_aqui"
             android:textAllCaps="true"
             android:textSize="18sp"
