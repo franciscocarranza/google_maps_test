@@ -62,7 +62,11 @@ public class MainActivity extends AppCompatActivity{
 
     @OnClick(R.id.btn_map)
     public void goToMap () {
-        startActivity(new Intent(this, MapActivity.class));
+        if (validarCampos()) {
+            startActivity(new Intent(this, MapActivity.class));
+        } else {
+            Toast.makeText(this, "llena los campos", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.txt_haz_click)
@@ -112,7 +116,7 @@ public class MainActivity extends AppCompatActivity{
         //creates dialog box window to turn on location
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+        builder.setMessage("GPS is required for this application, please enable it")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int id) {
@@ -126,5 +130,14 @@ public class MainActivity extends AppCompatActivity{
                 });
         final AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public boolean validarCampos() {
+        boolean ret = true;
+        if (!Utilerias.hasText(usernameEdt, "Campo requerido"))
+            ret = false;
+        if (!Utilerias.hasText(passwordEdt, "Campo requerido"))
+            ret = false;
+        return ret;
     }
 }

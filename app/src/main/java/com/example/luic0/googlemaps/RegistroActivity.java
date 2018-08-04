@@ -1,10 +1,12 @@
 package com.example.luic0.googlemaps;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,11 +25,14 @@ public class RegistroActivity extends AppCompatActivity {
     @BindView(R.id.edt_correo)
     EditText correoEdt;
 
+    @BindView(R.id.check_accepto)
+    CheckBox acceptoCheck;
+
     @OnClick(R.id.btn_crear_cuenta)
     public void registro () {
         if (validarCampos()) {
-             String user, correo; String password;
-        }else {
+            startActivity(new Intent(this, MainActivity.class));
+        } else {
             Toast.makeText(this, "llena los campos", Toast.LENGTH_SHORT).show();
         }
     }
@@ -73,6 +78,8 @@ public class RegistroActivity extends AppCompatActivity {
         if (!Utilerias.hasText(correoEdt, "Campo requerido"))
             ret = false;
         if (!Utilerias.hasText(contraEdt, "Campo requerido"))
+            ret = false;
+        if (!Utilerias.checked(acceptoCheck, "la casilla de verificación \n no está marcada"))
             ret = false;
         return ret;
     }

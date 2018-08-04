@@ -1,5 +1,6 @@
 package com.example.luic0.googlemaps;
 
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 public class Utilerias {
@@ -17,4 +18,15 @@ public class Utilerias {
 
         return true;
     }
+
+    public static boolean checked(CheckBox checkBox, String message) {
+        boolean check = checkBox.isChecked();
+        if (!check) {
+            checkBox.setError(message);
+            return false;
+        }
+
+        return true;
+    }
+
 }
