@@ -25,9 +25,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    //circular imageview
+    //circular image view
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-    //butterknife
+    //butter knife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //google play services
@@ -38,8 +38,17 @@ dependencies {
     implementation 'com.google.android.gms:play-services-places:15.0.1'
     //slide up panel dependency
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
-    //recyclerview
+    //recycler view
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     //permissions
     implementation 'com.github.karanchuri:PermissionManager:0.1.0'
+    //Retrofit and Gson
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //rxjava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
+
 }

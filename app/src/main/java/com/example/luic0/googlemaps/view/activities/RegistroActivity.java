@@ -1,4 +1,4 @@
-package com.example.luic0.googlemaps;
+package com.example.luic0.googlemaps.view.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.luic0.googlemaps.R;
+import com.example.luic0.googlemaps.utils.Utilerias;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,11 +76,11 @@ public class RegistroActivity extends AppCompatActivity {
 
     public boolean validarCampos() {
         boolean ret = true;
-        if (!Utilerias.hasText(nameEdt, "Campo requerido"))
+        if (Utilerias.hasText(nameEdt, "Campo requerido"))
             ret = false;
-        if (!Utilerias.hasText(correoEdt, "Campo requerido"))
+        if (Utilerias.hasText(correoEdt, "Campo requerido"))
             ret = false;
-        if (!Utilerias.hasText(contraEdt, "Campo requerido"))
+        if (Utilerias.hasText(contraEdt, "Campo requerido"))
             ret = false;
         if (!Utilerias.checked(acceptoCheck, "la casilla de verificación \n no está marcada"))
             ret = false;

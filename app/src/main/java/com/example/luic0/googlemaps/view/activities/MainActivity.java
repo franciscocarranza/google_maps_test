@@ -1,4 +1,4 @@
-package com.example.luic0.googlemaps;
+package com.example.luic0.googlemaps.view.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,6 +15,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.luic0.googlemaps.R;
+import com.example.luic0.googlemaps.utils.Utilerias;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity{
         isServicesOK();
         statusCheck();
 
+        //when the user clicks outside of an edttxt the keyboard will be hidden
         usernameEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -132,11 +135,12 @@ public class MainActivity extends AppCompatActivity{
         alert.show();
     }
 
+    //validates if the user has left any edttexts empty
     public boolean validarCampos() {
         boolean ret = true;
-        if (!Utilerias.hasText(usernameEdt, "Campo requerido"))
+        if (Utilerias.hasText(usernameEdt, "Campo requerido"))
             ret = false;
-        if (!Utilerias.hasText(passwordEdt, "Campo requerido"))
+        if (Utilerias.hasText(passwordEdt, "Campo requerido"))
             ret = false;
         return ret;
     }

@@ -1,4 +1,4 @@
-package com.example.luic0.googlemaps;
+package com.example.luic0.googlemaps.utils;
 
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -13,10 +13,10 @@ public class Utilerias {
         // length: 0 means there is no text
         if (text.length() == 0) {
             editText.setError(message);
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public static boolean checked(CheckBox checkBox, String message) {
