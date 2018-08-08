@@ -122,6 +122,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_map);
         ButterKnife.bind(this);
         getLocationPermission();
+        getSupportActionBar().hide();
 
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override

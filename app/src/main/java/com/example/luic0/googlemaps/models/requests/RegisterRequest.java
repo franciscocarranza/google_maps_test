@@ -5,31 +5,31 @@ package com.example.luic0.googlemaps.models.requests;
  * eSoft del Pacifico
  */
 public class RegisterRequest {
-    private String nombre;
-    private String contra;
-    private String correo;
+    private String name;
+    private String password;
+    private String email;
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getContra() {
-        return contra;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContra(String contra) {
-        this.contra = contra;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

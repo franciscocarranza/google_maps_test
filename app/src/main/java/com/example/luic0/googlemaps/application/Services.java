@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Services {
     //Base Url
-    private final static String BASE_URL = "http://milan.esoft.com.mx/Interlogias/api";
+    private final static String BASE_URL = "http://milan.esoft.com.mx/Interlogias/api/";
 
     //GetRetrofit method
     public static Retrofit getRetrofitInstance(){

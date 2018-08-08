@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.luic0.googlemaps.R;
+import com.example.luic0.googlemaps.interfaces.ILogin;
+import com.example.luic0.googlemaps.models.responses.LoginResponse;
+import com.example.luic0.googlemaps.presenters.LoginPresenter;
 import com.example.luic0.googlemaps.utils.Utilerias;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -24,13 +27,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements ILogin{
 
     private static final String TAG = "MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
+    LoginPresenter loginPresenter;
 
-    @BindView(R.id.edt_username)
-    EditText usernameEdt;
+    @BindView(R.id.edt_email)
+    EditText emailEdt;
 
     @BindView(R.id.edt_password)
     EditText passwordEdt;
@@ -40,11 +44,12 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        getSupportActionBar().hide();
         isServicesOK();
         statusCheck();
 
         //when the user clicks outside of an edttxt the keyboard will be hidden
-        usernameEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        emailEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
@@ -61,14 +66,21 @@ public class MainActivity extends AppCompatActivity{
                 }
             }
         });
+
+        loginPresenter = new LoginPresenter(this, this);
     }
 
     @OnClick(R.id.btn_map)
     public void goToMap () {
         if (validarCampos()) {
-            startActivity(new Intent(this, MapActivity.class));
+            String email, password;
+            email = emailEdt.getText().toString();
+            password = passwordEdt.getText().toString();
+
+            loginPresenter.login(email, password);
+
         } else {
-            Toast.makeText(this, "llena los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ingrese los campos requeridos", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -138,10 +150,21 @@ public class MainActivity extends AppCompatActivity{
     //validates if the user has left any edttexts empty
     public boolean validarCampos() {
         boolean ret = true;
-        if (Utilerias.hasText(usernameEdt, "Campo requerido"))
+        if (Utilerias.hasText(emailEdt, "Campo requerido"))
             ret = false;
         if (Utilerias.hasText(passwordEdt, "Campo requerido"))
             ret = false;
         return ret;
+    }
+
+    @Override
+    public void loginOk(LoginResponse response) {
+        startActivity(new Intent(this, MapActivity.class));
+
+    }
+
+    @Override
+    public void loginError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

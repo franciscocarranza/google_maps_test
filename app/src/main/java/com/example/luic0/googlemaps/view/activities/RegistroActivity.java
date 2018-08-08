@@ -6,18 +6,24 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.luic0.googlemaps.R;
+import com.example.luic0.googlemaps.interfaces.IRegister;
+import com.example.luic0.googlemaps.models.responses.RegisterResponse;
+import com.example.luic0.googlemaps.presenters.RegisterPresenter;
 import com.example.luic0.googlemaps.utils.Utilerias;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegistroActivity extends AppCompatActivity {
+public class RegistroActivity extends AppCompatActivity implements IRegister{
+
+    RegisterPresenter registerPresenter;
 
     @BindView(R.id.edt_name)
     EditText nameEdt;
@@ -31,20 +37,15 @@ public class RegistroActivity extends AppCompatActivity {
     @BindView(R.id.check_accepto)
     CheckBox acceptoCheck;
 
-    @OnClick(R.id.btn_crear_cuenta)
-    public void registro () {
-        if (validarCampos()) {
-            startActivity(new Intent(this, MainActivity.class));
-        } else {
-            Toast.makeText(this, "llena los campos", Toast.LENGTH_SHORT).show();
-        }
-    }
+    @BindView(R.id.btn_crear_cuenta)
+    Button crearCuentaBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         ButterKnife.bind(this);
+        getSupportActionBar().hide();
 
         nameEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -72,7 +73,26 @@ public class RegistroActivity extends AppCompatActivity {
                 }
             }
         });
+
+        registerPresenter = new RegisterPresenter(this, this);
     }
+
+    @OnClick(R.id.btn_crear_cuenta)
+    public void registro () {
+        if (validarCampos()) {
+            String user, password, email;
+            user = nameEdt.getText().toString();
+            password = contraEdt.getText().toString();
+            email = correoEdt.getText().toString();
+
+            registerPresenter.register(user, password, email);
+
+        } else {
+            Toast.makeText(this, "Ingrese los campos requeridos", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     public boolean validarCampos() {
         boolean ret = true;
@@ -92,5 +112,16 @@ public class RegistroActivity extends AppCompatActivity {
         if (inputMethodManager != null) {
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    @Override
+    public void registerOk(RegisterResponse response) {
+        Toast.makeText(this, response.getMessage(), Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    @Override
+    public void registerError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
