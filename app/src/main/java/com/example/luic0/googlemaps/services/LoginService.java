@@ -25,7 +25,6 @@ public class LoginService {
         @Headers("Content-Type: application/json")
         @POST("Users/Login")
         Observable<LoginResponse> login(@Body LoginRequest request );
-
     }
 
     public LoginApi getApi(){

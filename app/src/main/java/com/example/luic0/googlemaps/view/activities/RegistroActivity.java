@@ -92,7 +92,16 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
         }
     }
 
+    @Override
+    public void registerOk(RegisterResponse response) {
+        Toast.makeText(this, response.getMessage(), Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, MainActivity.class));
+    }
 
+    @Override
+    public void registerError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 
     public boolean validarCampos() {
         boolean ret = true;
@@ -112,16 +121,5 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
         if (inputMethodManager != null) {
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-    }
-
-    @Override
-    public void registerOk(RegisterResponse response) {
-        Toast.makeText(this, response.getMessage(), Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, MainActivity.class));
-    }
-
-    @Override
-    public void registerError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

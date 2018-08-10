@@ -11,14 +11,19 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.luic0.googlemaps.R;
 import com.example.luic0.googlemaps.interfaces.ILogin;
+import com.example.luic0.googlemaps.interfaces.IPasswordRecovery;
 import com.example.luic0.googlemaps.models.responses.LoginResponse;
+import com.example.luic0.googlemaps.models.responses.PasswordRecoveryResponse;
 import com.example.luic0.googlemaps.presenters.LoginPresenter;
+import com.example.luic0.googlemaps.presenters.PasswordRecoveryPresenter;
 import com.example.luic0.googlemaps.utils.Utilerias;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -27,14 +32,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements ILogin{
+public class MainActivity extends AppCompatActivity implements ILogin, IPasswordRecovery{
 
     private static final String TAG = "MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
+    private Dialog mDialog;
+    PasswordRecoveryPresenter passwordRecoveryPresenter;
     LoginPresenter loginPresenter;
+    String enterEmail;
+    String email, password;
+    EditText enterEmailEdt;
 
     @BindView(R.id.edt_email)
     EditText emailEdt;
+
 
     @BindView(R.id.edt_password)
     EditText passwordEdt;
@@ -68,15 +79,20 @@ public class MainActivity extends AppCompatActivity implements ILogin{
         });
 
         loginPresenter = new LoginPresenter(this, this);
+        passwordRecoveryPresenter = new PasswordRecoveryPresenter(this, this);
+
+    }
+
+    @OnClick(R.id.txt_haz_click)
+    public void goTORegistro () {
+        startActivity(new Intent(this, RegistroActivity.class));
     }
 
     @OnClick(R.id.btn_map)
     public void goToMap () {
         if (validarCampos()) {
-            String email, password;
             email = emailEdt.getText().toString();
             password = passwordEdt.getText().toString();
-
             loginPresenter.login(email, password);
 
         } else {
@@ -84,9 +100,51 @@ public class MainActivity extends AppCompatActivity implements ILogin{
         }
     }
 
-    @OnClick(R.id.txt_haz_click)
-    public void goTORegistro () {
-        startActivity(new Intent(this, RegistroActivity.class));
+    //goes to dialog window
+    @OnClick(R.id.txt_olvidastes_contra)
+    public void goToPassRecovery (){
+        mDialog = new Dialog(this);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mDialog.setCancelable(false);
+        mDialog.setContentView(R.layout.dialog_forgot_password);
+
+        Button btnRecuperar = mDialog.findViewById(R.id.btn_reset_pass);
+        enterEmailEdt = mDialog.findViewById(R.id.edt_enter_email);
+
+        btnRecuperar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enterEmail = enterEmailEdt.getText().toString();
+                passwordRecoveryPresenter.passwordRecovery(enterEmail);
+
+
+                mDialog.dismiss();
+            }
+        });
+
+        mDialog.show();
+    }
+
+    @Override
+    public void loginOk(LoginResponse response) {
+        startActivity(new Intent(this, MapActivity.class));
+
+    }
+
+    @Override
+    public void loginError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void passwordRecoveryOk(PasswordRecoveryResponse response) {
+        Toast.makeText(MainActivity.this, "Password Reseted", Toast.LENGTH_SHORT).show();
+        mDialog.dismiss();
+    }
+
+    @Override
+    public void passwordRecoveryError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
         //hides soft keyboard
@@ -155,16 +213,5 @@ public class MainActivity extends AppCompatActivity implements ILogin{
         if (Utilerias.hasText(passwordEdt, "Campo requerido"))
             ret = false;
         return ret;
-    }
-
-    @Override
-    public void loginOk(LoginResponse response) {
-        startActivity(new Intent(this, MapActivity.class));
-
-    }
-
-    @Override
-    public void loginError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
