@@ -13,10 +13,10 @@ public class Utilerias {
         // length: 0 means there is no text
         if (text.length() == 0) {
             editText.setError(message);
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     public static boolean checked(CheckBox checkBox, String message) {

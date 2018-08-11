@@ -84,7 +84,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Mapa esta listo", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
         mMap.setOnInfoWindowClickListener(this);
@@ -105,7 +105,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     new MarkerOptions()
                             .position(new LatLng(24.7988943, -107.405242))
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker))
-                            .snippet("a")
+                            .snippet("")
                             .title("Esoft"));
 
             mMap.addMarker(

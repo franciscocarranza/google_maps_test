@@ -39,13 +39,14 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
     private Dialog mDialog;
     PasswordRecoveryPresenter passwordRecoveryPresenter;
     LoginPresenter loginPresenter;
-    String enterEmail;
-    String email, password;
+    String email, password, enterEmail;
     EditText enterEmailEdt;
+
+
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @BindView(R.id.edt_email)
     EditText emailEdt;
-
 
     @BindView(R.id.edt_password)
     EditText passwordEdt;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
     }
 
     @OnClick(R.id.txt_haz_click)
-    public void goTORegistro () {
+    public void goToRegistro() {
         startActivity(new Intent(this, RegistroActivity.class));
     }
 
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
     public void goToPassRecovery (){
         mDialog = new Dialog(this);
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mDialog.setCancelable(false);
+        //mDialog.setCancelable(false);
         mDialog.setContentView(R.layout.dialog_forgot_password);
 
         Button btnRecuperar = mDialog.findViewById(R.id.btn_reset_pass);
@@ -114,11 +115,24 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
         btnRecuperar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enterEmail = enterEmailEdt.getText().toString();
-                passwordRecoveryPresenter.passwordRecovery(enterEmail);
+                if (validarCorreo()) {
+                    String verifyEmail = enterEmailEdt.getText().toString().trim();
 
 
-                mDialog.dismiss();
+
+
+                    if (verifyEmail.matches(emailPattern))
+                    {
+                        passwordRecoveryPresenter.passwordRecovery(verifyEmail);
+                        //Toast.makeText(getApplicationContext(),"valid email ",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"Correo electronico invalido", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Ingrese los campos requeridos", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -138,13 +152,14 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
 
     @Override
     public void passwordRecoveryOk(PasswordRecoveryResponse response) {
-        Toast.makeText(MainActivity.this, "Password Reseted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "Contraseña reseteada", Toast.LENGTH_SHORT).show();
         mDialog.dismiss();
     }
 
     @Override
     public void passwordRecoveryError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        mDialog.dismiss();
     }
 
         //hides soft keyboard
@@ -171,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
             Dialog dialog =GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
         } else {
-            Toast.makeText(this, "you cant make make map requests", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "no puedes hacer solicitudes de mapas", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -189,9 +204,9 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
         //creates dialog box window to turn on location
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("GPS is required for this application, please enable it")
+        builder.setMessage("Se requiere GPS para esta aplicación, habilítela")
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int id) {
                         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
@@ -208,10 +223,19 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
     //validates if the user has left any edttexts empty
     public boolean validarCampos() {
         boolean ret = true;
-        if (Utilerias.hasText(emailEdt, "Campo requerido"))
+        if (!Utilerias.hasText(emailEdt, "Campo requerido"))
+            return ret = false;
+        if (!Utilerias.hasText(passwordEdt, "Campo requerido"))
+            return ret = false;
+        return ret;
+    }
+
+    public boolean validarCorreo(){
+        boolean ret = true;
+
+        if (!Utilerias.hasText(enterEmailEdt, "Campo requerido"))
             ret = false;
-        if (Utilerias.hasText(passwordEdt, "Campo requerido"))
-            ret = false;
+
         return ret;
     }
 }

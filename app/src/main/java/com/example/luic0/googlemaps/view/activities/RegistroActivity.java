@@ -24,6 +24,7 @@ import butterknife.OnClick;
 public class RegistroActivity extends AppCompatActivity implements IRegister{
 
     RegisterPresenter registerPresenter;
+    String user, password, email;
 
     @BindView(R.id.edt_name)
     EditText nameEdt;
@@ -80,7 +81,6 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
     @OnClick(R.id.btn_crear_cuenta)
     public void registro () {
         if (validarCampos()) {
-            String user, password, email;
             user = nameEdt.getText().toString();
             password = contraEdt.getText().toString();
             email = correoEdt.getText().toString();
