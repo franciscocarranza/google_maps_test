@@ -39,10 +39,8 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
     private Dialog mDialog;
     PasswordRecoveryPresenter passwordRecoveryPresenter;
     LoginPresenter loginPresenter;
-    String email, password, enterEmail;
+    String email, password;
     EditText enterEmailEdt;
-
-
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @BindView(R.id.edt_email)
@@ -92,12 +90,15 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
     @OnClick(R.id.btn_map)
     public void goToMap () {
         if (validarCampos()) {
-            email = emailEdt.getText().toString();
+            email = emailEdt.getText().toString().trim();
             password = passwordEdt.getText().toString();
             loginPresenter.login(email, password);
 
+            if (!email.matches(emailPattern)) {
+                Toast.makeText(getApplicationContext(),"Correo electronico invalido", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(this, "Ingrese los campos requeridos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Ingrese los campos requeridos", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -118,16 +119,10 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
                 if (validarCorreo()) {
                     String verifyEmail = enterEmailEdt.getText().toString().trim();
 
-
-
-
-                    if (verifyEmail.matches(emailPattern))
-                    {
+                    if (verifyEmail.matches(emailPattern)) {
                         passwordRecoveryPresenter.passwordRecovery(verifyEmail);
                         //Toast.makeText(getApplicationContext(),"valid email ",Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(),"Correo electronico invalido", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -224,18 +219,16 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
     public boolean validarCampos() {
         boolean ret = true;
         if (!Utilerias.hasText(emailEdt, "Campo requerido"))
-            return ret = false;
+             ret = false;
         if (!Utilerias.hasText(passwordEdt, "Campo requerido"))
-            return ret = false;
+             ret = false;
         return ret;
     }
 
     public boolean validarCorreo(){
         boolean ret = true;
-
         if (!Utilerias.hasText(enterEmailEdt, "Campo requerido"))
             ret = false;
-
         return ret;
     }
 }

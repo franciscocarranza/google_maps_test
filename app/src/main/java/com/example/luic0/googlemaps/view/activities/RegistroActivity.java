@@ -25,6 +25,7 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
 
     RegisterPresenter registerPresenter;
     String user, password, email;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @BindView(R.id.edt_name)
     EditText nameEdt;
@@ -83,10 +84,12 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
         if (validarCampos()) {
             user = nameEdt.getText().toString();
             password = contraEdt.getText().toString();
-            email = correoEdt.getText().toString();
-
+            email = correoEdt.getText().toString().trim();
             registerPresenter.register(user, password, email);
 
+            if (!email.matches(emailPattern)) {
+                Toast.makeText(getApplicationContext(),"Correo electronico invalido", Toast.LENGTH_SHORT).show();
+            }
         } else {
             Toast.makeText(this, "Ingrese los campos requeridos", Toast.LENGTH_SHORT).show();
         }
