@@ -92,9 +92,11 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
         if (validarCampos()) {
             email = emailEdt.getText().toString().trim();
             password = passwordEdt.getText().toString();
-            loginPresenter.login(email, password);
 
-            if (!email.matches(emailPattern)) {
+
+            if (email.matches(emailPattern)) {
+                loginPresenter.login(email, password);
+            } else {
                 Toast.makeText(getApplicationContext(),"Correo electronico invalido", Toast.LENGTH_SHORT).show();
             }
         } else {

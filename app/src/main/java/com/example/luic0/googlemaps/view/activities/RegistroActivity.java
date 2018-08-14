@@ -85,9 +85,10 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
             user = nameEdt.getText().toString();
             password = contraEdt.getText().toString();
             email = correoEdt.getText().toString().trim();
-            registerPresenter.register(user, password, email);
 
-            if (!email.matches(emailPattern)) {
+            if (email.matches(emailPattern)) {
+                registerPresenter.register(user, password, email);
+            } else {
                 Toast.makeText(getApplicationContext(),"Correo electronico invalido", Toast.LENGTH_SHORT).show();
             }
         } else {
@@ -108,13 +109,13 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
 
     public boolean validarCampos() {
         boolean ret = true;
-        if (Utilerias.hasText(nameEdt, "Campo requerido"))
+        if (!Utilerias.hasText(nameEdt, "Campo requerido"))
             ret = false;
-        if (Utilerias.hasText(correoEdt, "Campo requerido"))
+        if (!Utilerias.hasText(correoEdt, "Campo requerido"))
             ret = false;
-        if (Utilerias.hasText(contraEdt, "Campo requerido"))
+        if (!Utilerias.hasText(contraEdt, "Campo requerido"))
             ret = false;
-        if (!Utilerias.checked(acceptoCheck, "la casilla de verificación \n no está marcada"))
+        if (!Utilerias.checked(acceptoCheck, "la casilla de verificación no está marcada"))
             ret = false;
         return ret;
     }

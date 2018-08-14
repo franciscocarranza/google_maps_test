@@ -24,4 +24,5 @@
     <string name="enter_email">Ingrese su correo electrónico</string>
     <string name="your_email">Tu correo electrónico</string>
     <string name="reset_pass">Restablecer mi contraseña</string>
+    <string name="directions">¿COMO LLEGAR?</string>
 </resources>
