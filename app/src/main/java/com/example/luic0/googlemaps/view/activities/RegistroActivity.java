@@ -48,6 +48,8 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
         setContentView(R.layout.activity_registro);
         ButterKnife.bind(this);
         getSupportActionBar().hide();
+        crearCuentaBtn.getBackground().setAlpha(120);
+        crearCuentaBtn.setClickable(false);
 
         nameEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -115,9 +117,20 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
             ret = false;
         if (!Utilerias.hasText(contraEdt, "Campo requerido"))
             ret = false;
-        if (!Utilerias.checked(acceptoCheck, "la casilla de verificación no está marcada"))
+        if (!Utilerias.checked(acceptoCheck, "la casilla no está marcada"))
             ret = false;
         return ret;
+    }
+
+    @OnClick(R.id.check_accepto)
+    public void checkboxState() {
+        if ( !acceptoCheck.isChecked() ) {
+            crearCuentaBtn.setClickable(false);
+            crearCuentaBtn.getBackground().setAlpha(120);
+        } else{
+            crearCuentaBtn.setClickable(true);
+            crearCuentaBtn.getBackground().setAlpha(255);
+        }
     }
 
     public void hideKeyboard(View view) {

@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements ILogin, IPassword
             email = emailEdt.getText().toString().trim();
             password = passwordEdt.getText().toString();
 
-
             if (email.matches(emailPattern)) {
                 loginPresenter.login(email, password);
             } else {
