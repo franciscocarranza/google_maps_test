@@ -1,138 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.activities.RegistroActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:orientation="vertical"
     android:focusableInTouchMode="true"
     android:background="@drawable/register_background">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_logo"
+        android:layout_width="173dp"
+        android:layout_height="143dp"
+        android:layout_marginBottom="28dp"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintBottom_toTopOf="@+id/edt_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_logo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_above="@+id/layout_edts"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_logo" />
+    <ImageView
+        android:id="@+id/img_skull"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_skull"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="112dp" />
 
+    <EditText
+        android:id="@+id/edt_name"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@id/img_skull"
+        android:background="@drawable/round_corners"
+        android:hint="@string/nombre"
+        android:inputType="text"
+        android:padding="3dp"
+        android:textColor="@color/blanco"
+        android:textColorHint="@color/blanco"
+        app:layout_constraintBottom_toTopOf="@+id/edt_contraseña"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/layout_edts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="30dp"
-            tools:ignore="UselessParent">
+    <EditText
+        android:id="@+id/edt_contraseña"
+        style=""
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/round_corners"
+        android:drawablePadding="25dp"
+        android:drawableStart="@drawable/ic_key"
+        android:drawableTint="@color/blanco"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="@color/blanco"
+        android:textColorHint="@color/blanco"
+        app:layout_constraintBottom_toTopOf="@+id/edt_correo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/edt_correo"
+        style=""
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/round_corners"
+        android:drawablePadding="25dp"
+        android:drawableStart="@drawable/ic_mail"
+        android:drawableTint="@color/blanco"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:textColor="@color/blanco"
+        android:textColorHint="@color/blanco"
+        app:layout_constraintBottom_toTopOf="@+id/check_accepto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-                <RelativeLayout
-                    android:id="@+id/ly_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/round_corners">
-
-                    <ImageView
-                        android:id="@+id/img_skull"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginEnd="22dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_skull" />
-
-                    <EditText
-                        android:id="@+id/edt_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/img_skull"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@android:color/transparent"
-                        android:textColorHint="@color/blanco"
-                        android:textColor="@color/blanco"
-                        android:inputType="text"
-                        android:hint="@string/nombre"
-                        android:padding="3dp" />
-
-                </RelativeLayout>
-
-                <EditText
-                    android:id="@+id/edt_contraseña"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/password"
-                    android:layout_below="@id/ly_name"
-                    android:textColorHint="@color/blanco"
-                    android:textColor="@color/blanco"
-                    android:padding="10dp"
-                    android:inputType="textPassword"
-                    style=""
-                    android:background="@drawable/round_corners"
-                    android:drawableStart="@drawable/ic_key"
-                    android:drawablePadding="25dp"
-                    android:drawableTint="@color/blanco"/>
-
-                <EditText
-                    android:id="@+id/edt_correo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@id/edt_contraseña"
-                    android:hint="@string/email"
-                    android:inputType="textEmailAddress"
-                    android:textColorHint="@color/blanco"
-                    android:textColor="@color/blanco"
-                    android:padding="10dp"
-                    style=""
-                    android:background="@drawable/round_corners"
-                    android:drawableStart="@drawable/ic_mail"
-                    android:drawablePadding="25dp"
-                    android:drawableTint="@color/blanco"/>
-
-                <CheckBox
-                    android:id="@+id/check_accepto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/edt_correo"
-                    android:text="@string/acepto_terminos"
-                    android:textColor="@color/blanco"
-                    android:buttonTint="@color/blanco"/>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_crear_cuenta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="35dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/round_btn"
-            android:textColor="@color/dark_grey"
-            android:text="@string/crear_cuenta"/>
+    <CheckBox
+        android:id="@+id/check_accepto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/blanco"
+        android:text="@string/acepto_terminos"
+        android:textColor="@color/blanco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="388dp" />
 
 
-    </RelativeLayout>
-
-
+    <Button
+        android:id="@+id/btn_crear_cuenta"
+        android:layout_width="226dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_btn"
+        android:text="@string/crear_cuenta"
+        android:textColor="@color/dark_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_accepto" />
 
 </android.support.constraint.ConstraintLayout>
