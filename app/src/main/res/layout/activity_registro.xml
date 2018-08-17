@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.activities.RegistroActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/register_background"
     android:clickable="true"
     android:focusableInTouchMode="true"
-    android:background="@drawable/register_background">
+    tools:context=".view.activities.RegistroActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_logo"
-        android:layout_width="173dp"
-        android:layout_height="143dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_logo"
-        app:layout_constraintBottom_toTopOf="@+id/edt_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/img_skull"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_skull"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="112dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edt_name"
         android:layout_width="0dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@id/img_skull"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/round_corners"
+        android:drawablePadding="25dp"
+        android:drawableStart="@drawable/ic_skull"
         android:hint="@string/nombre"
         android:inputType="text"
-        android:padding="3dp"
+        android:padding="9dp"
         android:textColor="@color/blanco"
         android:textColorHint="@color/blanco"
-        app:layout_constraintBottom_toTopOf="@+id/edt_contraseña"
+        app:layout_constraintBottom_toTopOf="@+id/btn_crear_cuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo"
+        app:layout_constraintVertical_bias="0.091" />
 
     <EditText
         android:id="@+id/edt_contraseña"
         style=""
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/round_corners"
         android:drawablePadding="25dp"
         android:drawableStart="@drawable/ic_key"
@@ -61,16 +61,22 @@
         android:padding="10dp"
         android:textColor="@color/blanco"
         android:textColorHint="@color/blanco"
-        app:layout_constraintBottom_toTopOf="@+id/edt_correo"
+        app:layout_constraintBottom_toTopOf="@+id/btn_crear_cuenta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_name"
+        app:layout_constraintVertical_bias="0.069" />
 
     <EditText
         android:id="@+id/edt_correo"
         style=""
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/round_corners"
         android:drawablePadding="25dp"
         android:drawableStart="@drawable/ic_mail"
@@ -80,35 +86,46 @@
         android:padding="10dp"
         android:textColor="@color/blanco"
         android:textColorHint="@color/blanco"
-        app:layout_constraintBottom_toTopOf="@+id/check_accepto"
+        app:layout_constraintBottom_toTopOf="@+id/btn_crear_cuenta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_contraseña"
+        app:layout_constraintVertical_bias="0.087" />
 
     <CheckBox
         android:id="@+id/check_accepto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:buttonTint="@color/blanco"
         android:text="@string/acepto_terminos"
         android:textColor="@color/blanco"
+        app:layout_constraintBottom_toTopOf="@+id/btn_crear_cuenta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="388dp" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_correo"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <Button
         android:id="@+id/btn_crear_cuenta"
-        android:layout_width="226dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/round_btn"
         android:text="@string/crear_cuenta"
         android:textColor="@color/dark_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/check_accepto" />
+        app:layout_constraintTop_toBottomOf="@+id/img_logo"
+        app:layout_constraintVertical_bias="0.951" />
 
 </android.support.constraint.ConstraintLayout>
