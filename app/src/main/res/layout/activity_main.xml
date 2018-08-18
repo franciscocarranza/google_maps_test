@@ -8,6 +8,8 @@
     android:layout_height="match_parent"
     android:layout_gravity="top"
     android:background="@drawable/login_background"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     tools:context=".view.activities.MainActivity"
     tools:layout_editor_absoluteY="89dp">
@@ -45,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_logo"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.102" />
 
     <EditText
         android:id="@+id/edt_password"

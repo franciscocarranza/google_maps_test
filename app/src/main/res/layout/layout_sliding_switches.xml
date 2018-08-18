@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout6"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/ly_reaya"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle"
-        android:padding="17dp">
+        android:padding="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="20dp"
@@ -27,24 +32,29 @@
             android:id="@+id/btn_reaya"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ly_rdy"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ly_reaya"
+        android:layout_marginBottom="64dp"
+        android:layout_marginTop="61dp"
         android:background="@drawable/rectangle"
-        android:padding="17dp">
+        android:padding="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ly_rnm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/ic_compass"/>
+            android:src="@drawable/ic_compass" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,24 +66,29 @@
             android:id="@+id/btn_rdy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ly_rnm"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ly_rdy"
+        android:layout_marginBottom="119dp"
+        android:layout_marginTop="122dp"
         android:background="@drawable/rectangle"
-        android:padding="17dp">
+        android:padding="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ly_contacto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="4dp"
-            android:src="@drawable/ic_hour_glass"/>
+            android:src="@drawable/ic_hour_glass" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,24 +100,27 @@
             android:id="@+id/btn_rnm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ly_rni"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ly_rnm"
+        android:layout_marginBottom="110dp"
         android:background="@drawable/rectangle"
-        android:padding="17dp">
+        android:padding="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="5dp"
-            android:src="@drawable/ic_candle"/>
+            android:src="@drawable/ic_candle" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -114,41 +132,56 @@
             android:id="@+id/btn_rni"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ly_contacto"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ly_rni"
-        android:padding="16dp">
+        android:background="@drawable/rectangle"
+        android:padding="17dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ly_rni">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
-            android:src="@drawable/ic_black_skull"/>
+            android:src="@drawable/ic_black_skull" />
 
         <TextView
             android:id="@+id/txt_contacto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="13dp"
-            android:text="@string/contacto"/>
+            android:text="@string/contacto" />
+
+        <Switch
+            android:id="@+id/btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:visibility="gone" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_cerrar_sesion"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ly_contacto"
-        android:padding="18dp"
         android:background="@color/black"
+        android:padding="18dp"
+        android:text="@string/cerrar_sesion"
         android:textColor="@color/blanco"
-        android:text="@string/cerrar_sesion"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ly_contacto" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
