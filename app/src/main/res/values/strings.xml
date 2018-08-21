@@ -25,4 +25,7 @@
     <string name="your_email">Tu correo electrónico</string>
     <string name="reset_pass">Restablecer mi contraseña</string>
     <string name="directions">¿COMO LLEGAR?</string>
+    <string name="asunto">ASUNTO</string>
+    <string name="mensaje">MENSAJE</string>
+    <string name="enviar">ENVIAR</string>
 </resources>

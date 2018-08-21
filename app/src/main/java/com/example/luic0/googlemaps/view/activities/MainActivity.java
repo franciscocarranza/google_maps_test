@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.luic0.googlemaps.R;
+import com.example.luic0.googlemaps.application.ActivityBase;
 import com.example.luic0.googlemaps.interfaces.ILogin;
 import com.example.luic0.googlemaps.interfaces.IPasswordRecovery;
 import com.example.luic0.googlemaps.models.responses.LoginResponse;
@@ -32,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements ILogin, IPasswordRecovery{
+public class MainActivity extends ActivityBase implements ILogin, IPasswordRecovery{
 
     private static final String TAG = "MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;

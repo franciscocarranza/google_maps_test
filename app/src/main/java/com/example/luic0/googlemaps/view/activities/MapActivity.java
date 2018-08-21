@@ -82,6 +82,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         startActivity(new Intent(this, MainActivity.class));
     }
 
+    @OnClick(R.id.ly_contacto)
+    public void goTOContact () {
+        startActivity(new Intent(this, ContactoActivity.class));
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Toast.makeText(this, "Mapa esta listo", Toast.LENGTH_SHORT).show();
