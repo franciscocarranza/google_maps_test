@@ -20,11 +20,11 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class LoginPresenter extends ActivityBase{
     private ILogin mView;
-    private Context context;
+    private Context mContext;
 
     public LoginPresenter(ILogin iLogin, Context context){
         this.mView = iLogin;
-        this.context = context;
+        this.mContext = context;
     }
 
     public void login(String email, String password){
@@ -35,7 +35,7 @@ public class LoginPresenter extends ActivityBase{
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        ((ActivityBase) context).showProgressBar();
+                        ((ActivityBase) mContext).showProgressBar();
                     }
                 })
                 .subscribe(new DisposableObserver<LoginResponse>() {
@@ -54,13 +54,13 @@ public class LoginPresenter extends ActivityBase{
                     public void onError(Throwable e) {
                         Log.e("", "");
                         mView.loginError(e.toString());
-                        ((ActivityBase) context).hideProgressBar();
+                        ((ActivityBase) mContext).hideProgressBar();
                     }
 
                     @Override
                     public void onComplete() {
                         Log.e("", "");
-                        ((ActivityBase) context).hideProgressBar();
+                        ((ActivityBase) mContext).hideProgressBar();
                     }
                 });
     }

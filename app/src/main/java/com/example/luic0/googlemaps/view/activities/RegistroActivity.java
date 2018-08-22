@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.luic0.googlemaps.R;
+import com.example.luic0.googlemaps.application.ActivityBase;
 import com.example.luic0.googlemaps.interfaces.IRegister;
 import com.example.luic0.googlemaps.models.responses.RegisterResponse;
 import com.example.luic0.googlemaps.presenters.RegisterPresenter;
@@ -21,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegistroActivity extends AppCompatActivity implements IRegister{
+public class RegistroActivity extends ActivityBase implements IRegister{
 
     RegisterPresenter registerPresenter;
     String user, password, email;
@@ -109,6 +110,17 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @OnClick(R.id.check_accepto)
+    public void checkboxState() {
+        if ( !acceptoCheck.isChecked() ) {
+            crearCuentaBtn.setClickable(false);
+            crearCuentaBtn.getBackground().setAlpha(120);
+        } else{
+            crearCuentaBtn.setClickable(true);
+            crearCuentaBtn.getBackground().setAlpha(255);
+        }
+    }
+
     public boolean validarCampos() {
         boolean ret = true;
         if (!Utilerias.hasText(nameEdt, "Campo requerido"))
@@ -120,17 +132,6 @@ public class RegistroActivity extends AppCompatActivity implements IRegister{
         if (!Utilerias.checked(acceptoCheck, "la casilla no está marcada"))
             ret = false;
         return ret;
-    }
-
-    @OnClick(R.id.check_accepto)
-    public void checkboxState() {
-        if ( !acceptoCheck.isChecked() ) {
-            crearCuentaBtn.setClickable(false);
-            crearCuentaBtn.getBackground().setAlpha(120);
-        } else{
-            crearCuentaBtn.setClickable(true);
-            crearCuentaBtn.getBackground().setAlpha(255);
-        }
     }
 
     public void hideKeyboard(View view) {

@@ -5,6 +5,8 @@ package com.example.luic0.googlemaps.models.requests;
  * eSoft del Pacifico
  */
 public class PasswordRecoveryRequest {
+    private String email;
+
     public String getEmail() {
 
         return email;
@@ -13,6 +15,4 @@ public class PasswordRecoveryRequest {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    private String email;
 }

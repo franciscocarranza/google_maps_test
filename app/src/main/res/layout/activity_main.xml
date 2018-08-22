@@ -14,16 +14,6 @@
     tools:context=".view.activities.MainActivity"
     tools:layout_editor_absoluteY="89dp">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_logo"
         android:layout_width="0dp"
@@ -102,6 +92,17 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_password"
         app:layout_constraintVertical_bias="0.103" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
+
     <TextView
         android:id="@+id/txt_olvidastes_contra"
         android:layout_width="0dp"
@@ -114,6 +115,7 @@
         android:text="@string/did_you_forget"
         android:textColor="@color/blanco"
         android:textSize="18sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/txt_haz_click"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -150,6 +152,7 @@
         android:textAllCaps="true"
         android:textColor="@color/blanco"
         android:textSize="16sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

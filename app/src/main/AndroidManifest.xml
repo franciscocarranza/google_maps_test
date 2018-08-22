@@ -38,7 +38,9 @@
         <activity
             android:name=".view.activities.RegistroActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.activities.ContactoActivity"></activity>
+        <activity
+            android:name=".view.activities.ContactoActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +30,20 @@ import com.example.luic0.googlemaps.presenters.PasswordRecoveryPresenter;
 import com.example.luic0.googlemaps.utils.Utilerias;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +53,7 @@ public class MainActivity extends ActivityBase implements ILogin, IPasswordRecov
 
     private static final String TAG = "MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
+    private static final int LOCATION_SETTINGS_REQUEST = 200;
     private Dialog mDialog;
     PasswordRecoveryPresenter passwordRecoveryPresenter;
     LoginPresenter loginPresenter;
@@ -57,7 +74,7 @@ public class MainActivity extends ActivityBase implements ILogin, IPasswordRecov
         ButterKnife.bind(this);
         getSupportActionBar().hide();
         isServicesOK();
-        statusCheck();
+        displayLocationSettings();
 
         //when the user clicks outside of an edttxt the keyboard will be hidden
         emailEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -159,7 +176,13 @@ public class MainActivity extends ActivityBase implements ILogin, IPasswordRecov
         mDialog.dismiss();
     }
 
-        //hides soft keyboard
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e("", "");
+    }
+
+    //hides soft keyboard
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {
@@ -187,34 +210,44 @@ public class MainActivity extends ActivityBase implements ILogin, IPasswordRecov
         }
     }
 
-        //checks to see if location is on
-    public void statusCheck() {
-        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+    public void displayLocationSettings() {
+        final LocationRequest mLocationRequest = LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(10 * 1000)
+                .setFastestInterval(1000);
 
-        assert manager != null;
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            buildAlertMessageNoGps();
+        LocationSettingsRequest.Builder settingsBuilder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest);
+        settingsBuilder.setAlwaysShow(true);
 
-        }
-    }
+        Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(this)
+                .checkLocationSettings(settingsBuilder.build());
 
-        //creates dialog box window to turn on location
-    private void buildAlertMessageNoGps() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Se requiere GPS para esta aplicación, habilítela")
-                .setCancelable(false)
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+                try {
+                    LocationSettingsResponse response =
+                            task.getResult(ApiException.class);
+                } catch (ApiException ex) {
+                    switch (ex.getStatusCode()) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            try {
+                                ResolvableApiException resolvableApiException =
+                                        (ResolvableApiException) ex;
+                                resolvableApiException
+                                        .startResolutionForResult(MainActivity.this, LOCATION_SETTINGS_REQUEST);
+                            } catch (IntentSender.SendIntentException e) {
+
+                            }
+                            break;
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+
+                            break;
                     }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        dialog.cancel();
-                    }
-                });
-        final AlertDialog alert = builder.create();
-        alert.show();
+                }
+            }
+        });
     }
 
     //validates if the user has left any edttexts empty

@@ -4,8 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.luic0.googlemaps.R;
+import com.example.luic0.googlemaps.application.ActivityBase;
 
-public class ContactoActivity extends AppCompatActivity {
+public class ContactoActivity extends ActivityBase {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
