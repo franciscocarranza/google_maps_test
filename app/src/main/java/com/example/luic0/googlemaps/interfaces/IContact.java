@@ -8,5 +8,5 @@ import com.example.luic0.googlemaps.models.responses.ContactResponse;
  */
 public interface IContact {
     void contactOk(ContactResponse response);
-    void contactoError(String message);
+    void contactError(String message);
 }

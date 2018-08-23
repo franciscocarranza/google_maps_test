@@ -39,7 +39,7 @@
             android:name=".view.activities.RegistroActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activities.ContactoActivity"
+            android:name=".view.activities.ContactActivity"
             android:screenOrientation="portrait" />
     </application>
 

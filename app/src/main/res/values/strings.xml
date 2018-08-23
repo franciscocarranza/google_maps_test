@@ -15,10 +15,10 @@
     <string name="acepto_terminos">Acepto los terminos y condiciones</string>
     <string name="cerrar_sesion">CERRAR SESION</string>
     <string name="contacto">CONTACTO</string>
-    <string name="r_e_a_y_a">R.∙.E.∙.A.∙.Y.∙.A</string>
-    <string name="r_d_y">YORK</string>
-    <string name="r_n_m">R.∙.N.∙.M</string>
-    <string name="r_n_i">R.∙.N.∙.I</string>
+    <string name="r_e_a_y_a">R.∙.E.∙.A.∙.Y.∙.A.∙.</string>
+    <string name="r_d_y">YORK RITE</string>
+    <string name="r_n_m">R.∙.N.∙.M.∙.</string>
+    <string name="r_n_i">R.∙.N.∙.I.∙.</string>
     <string name="did_you_forget">¿Olvidaste tu contraseña?</string>
     <string name="forgot_password">Recuperar Contraseña</string>
     <string name="enter_email">Ingrese su correo electrónico</string>

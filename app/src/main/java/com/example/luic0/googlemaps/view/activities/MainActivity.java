@@ -97,7 +97,6 @@ public class MainActivity extends ActivityBase implements ILogin, IPasswordRecov
 
         loginPresenter = new LoginPresenter(this, this);
         passwordRecoveryPresenter = new PasswordRecoveryPresenter(this, this);
-
     }
 
     @OnClick(R.id.txt_haz_click)
@@ -116,6 +115,7 @@ public class MainActivity extends ActivityBase implements ILogin, IPasswordRecov
             } else {
                 Toast.makeText(getApplicationContext(),"Correo electronico invalido", Toast.LENGTH_SHORT).show();
             }
+
         } else {
             Toast.makeText(MainActivity.this, "Ingrese los campos requeridos", Toast.LENGTH_SHORT).show();
         }
@@ -156,7 +156,6 @@ public class MainActivity extends ActivityBase implements ILogin, IPasswordRecov
     @Override
     public void loginOk(LoginResponse response) {
         startActivity(new Intent(this, MapActivity.class));
-
     }
 
     @Override
@@ -190,7 +189,7 @@ public class MainActivity extends ActivityBase implements ILogin, IPasswordRecov
         }
     }
 
-        //checks google play services version
+    //checks google play services version
     public void isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
 
@@ -210,6 +209,7 @@ public class MainActivity extends ActivityBase implements ILogin, IPasswordRecov
         }
     }
 
+    //checks and turns on location
     public void displayLocationSettings() {
         final LocationRequest mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)

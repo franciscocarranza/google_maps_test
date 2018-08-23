@@ -84,7 +84,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @OnClick(R.id.ly_contacto)
     public void goTOContact () {
-        startActivity(new Intent(this, ContactoActivity.class));
+        startActivity(new Intent(this, ContactActivity.class));
     }
 
     @Override
